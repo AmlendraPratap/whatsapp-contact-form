@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>General Details Form</title>
+  <style>
+    :root {
+      --bg: #f4f7f5;
+      --surface: #ffffff;
+      --text: #1f2933;
+      --muted: #617080;
+      --border: #d8e0dc;
+      --primary: #128c7e;
+      --primary-dark: #0d6f64;
+      --focus: #f4b860;
+      --danger: #b42318;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(18, 140, 126, 0.1), rgba(244, 184, 96, 0.12)),
+        var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(920px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 40px 0;
+    }
+
+    .header {
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      margin: 0 0 8px;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.1;
+    }
+
+    .header p {
+      margin: 0;
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .form-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 18px 40px rgba(31, 41, 51, 0.08);
+      overflow: hidden;
+    }
+
+    form {
+      padding: 28px;
+    }
+
+    fieldset {
+      margin: 0 0 26px;
+      padding: 0;
+      border: 0;
+    }
+
+    fieldset:last-of-type {
+      margin-bottom: 18px;
+    }
+
+    legend {
+      width: 100%;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 7px;
+      color: #344054;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      transition: border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(18, 140, 126, 0.16);
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      padding-top: 8px;
+    }
+
+    button {
+      min-height: 48px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 6px;
+      background: var(--primary);
+      color: white;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      transition: background-color 160ms ease, transform 160ms ease;
+    }
+
+    button:hover {
+      background: var(--primary-dark);
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .note {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .error {
+      display: none;
+      margin: 0 0 18px;
+      padding: 12px;
+      border: 1px solid rgba(180, 35, 24, 0.28);
+      border-radius: 6px;
+      background: rgba(180, 35, 24, 0.08);
+      color: var(--danger);
+      font-weight: 700;
+    }
+
+    .error.show {
+      display: block;
+    }
+
+    @media (max-width: 720px) {
+      main {
+        width: min(100% - 24px, 920px);
+        padding: 24px 0;
+      }
+
+      form {
+        padding: 20px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="header" aria-labelledby="page-title">
+      <h1 id="page-title">General Details Form</h1>
+      <p>Please fill in your personal and contact information. After submitting, WhatsApp will open with your details ready to send.</p>
+    </section>
+
+    <section class="form-wrap">
+      <form id="detailsForm">
+        <p class="error" id="errorMessage">Please complete all required fields.</p>
+
+        <fieldset>
+          <legend>Personal Information</legend>
+          <div class="grid">
+            <div>
+              <label for="fullName">Full Name <span class="required">*</span></label>
+              <input id="fullName" name="fullName" type="text" autocomplete="name" required />
+            </div>
+
+            <div>
+              <label for="dob">Date of Birth</label>
+              <input id="dob" name="dob" type="date" />
+            </div>
+
+            <div>
+              <label for="gender">Gender</label>
+              <select id="gender" name="gender">
+                <option value="">Select gender</option>
+                <option>Female</option>
+                <option>Male</option>
+                <option>Other</option>
+                <option>Prefer not to say</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="occupation">Occupation</label>
+              <input id="occupation" name="occupation" type="text" autocomplete="organization-title" />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Contact Information</legend>
+          <div class="grid">
+            <div>
+              <label for="phone">Mobile Number <span class="required">*</span></label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required />
+            </div>
+
+            <div>
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" autocomplete="email" />
+            </div>
+
+            <div class="full">
+              <label for="address">Address</label>
+              <textarea id="address" name="address" autocomplete="street-address"></textarea>
+            </div>
+
+            <div>
+              <label for="city">City</label>
+              <input id="city" name="city" type="text" autocomplete="address-level2" />
+            </div>
+
+            <div>
+              <label for="state">State</label>
+              <input id="state" name="state" type="text" autocomplete="address-level1" />
+            </div>
+
+            <div>
+              <label for="pinCode">PIN / ZIP Code</label>
+              <input id="pinCode" name="pinCode" type="text" autocomplete="postal-code" />
+            </div>
+
+            <div>
+              <label for="country">Country</label>
+              <input id="country" name="country" type="text" autocomplete="country-name" />
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Additional Details</legend>
+          <div class="grid">
+            <div class="full">
+              <label for="message">Message / Notes</label>
+              <textarea id="message" name="message"></textarea>
+            </div>
+          </div>
+        </fieldset>
+
+        <div class="actions">
+          <button type="submit">Submit on WhatsApp</button>
+          <p class="note">Your details will only be shared when you press send in WhatsApp.</p>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    // Replace this with your WhatsApp number in international format, without + or spaces.
+    const receiverWhatsAppNumber = "919999999999";
+    const form = document.getElementById("detailsForm");
+    const errorMessage = document.getElementById("errorMessage");
+
+    function valueOf(formData, key) {
+      return (formData.get(key) || "Not provided").toString().trim() || "Not provided";
+    }
+
+    form.addEventListener("submit", function (event) {
+      event.preventDefault();
+      errorMessage.classList.remove("show");
+
+      if (!form.checkValidity()) {
+        errorMessage.classList.add("show");
+        form.reportValidity();
+        return;
+      }
+
+      const formData = new FormData(form);
+      const text = [
+        "General Details Form",
+        "",
+        "Personal Information",
+        `Full Name: ${valueOf(formData, "fullName")}`,
+        `Date of Birth: ${valueOf(formData, "dob")}`,
+        `Gender: ${valueOf(formData, "gender")}`,
+        `Occupation: ${valueOf(formData, "occupation")}`,
+        "",
+        "Contact Information",
+        `Mobile Number: ${valueOf(formData, "phone")}`,
+        `Email Address: ${valueOf(formData, "email")}`,
+        `Address: ${valueOf(formData, "address")}`,
+        `City: ${valueOf(formData, "city")}`,
+        `State: ${valueOf(formData, "state")}`,
+        `PIN / ZIP Code: ${valueOf(formData, "pinCode")}`,
+        `Country: ${valueOf(formData, "country")}`,
+        "",
+        "Additional Details",
+        `Message / Notes: ${valueOf(formData, "message")}`,
+      ].join("\n");
+
+      const whatsappUrl = `https://wa.me/${receiverWhatsAppNumber}?text=${encodeURIComponent(text)}`;
+      window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    });
+  </script>
+</body>
+</html>
