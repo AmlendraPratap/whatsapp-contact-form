@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Financial Planning Assessment</title>
+<style>
+body{font-family:Arial,Helvetica,sans-serif;background:#f4f7f5;margin:0}
+.container{max-width:900px;margin:30px auto;background:#fff;padding:30px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,.15)}
+h1,h2,h3{color:#128c7e}
+.q{margin:18px 0}
+input[type=text],textarea{width:100%;padding:10px;margin-top:6px;border:1px solid #ccc;border-radius:4px}
+button{background:#128c7e;color:#fff;border:none;padding:12px 22px;border-radius:6px;cursor:pointer}
+pre{white-space:pre-wrap;font-family:Arial}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>HAVE YOU COMPLETED YOUR FINANCIAL PLANNING?</h1>
+<p><b>Most people spend their entire lives earning money.</b><br>
+Very few spend time protecting it.<br>
+Very few prepare for the day when life takes an unexpected turn.<br><br>
+Take a moment and ask yourself honestly...<br><br>
+<b>Have you planned your finances considering the impact of inflation?</b></p>
+
+<form id="f">
+<div class="q"><label><input type="checkbox" id="c1"> ✅ How much Term Insurance have you taken to financially protect your family in your absence?</label><input type="text" id="a1" placeholder="Your answer"></div>
+<div class="q"><label><input type="checkbox" id="c2"> ✅ How much Health Insurance coverage do you have for your entire family?</label><input type="text" id="a2" placeholder="Your answer"></div>
+<div class="q"><label><input type="checkbox" id="c3"> ✅ Do you have a Personal Accident Insurance policy to protect your income against accidental disability or death?</label><input type="text" id="a3" placeholder="Your answer"></div>
+<div class="q"><label><input type="checkbox" id="c4"> ✅ Have you planned for your child's higher education? If yes, how much?</label><input type="text" id="a4" placeholder="Your answer"></div>
+<div class="q"><label><input type="checkbox" id="c5"> ✅ Have you planned for your child's marriage? If yes, how much?</label><input type="text" id="a5" placeholder="Your answer"></div>
+<div class="q"><label><input type="checkbox" id="c6"> ✅ Have you calculated your retirement corpus? How did you arrive at that figure?</label><input type="text" id="a6" placeholder="Your answer"></div>
+<div class="q"><label><input type="checkbox" id="c7"> ✅ Have you renewed your Two-Wheeler/Four-Wheeler Insurance on time?</label><input type="text" id="a7" placeholder="Your answer"></div>
+
+<button type="submit">Submit on WhatsApp</button>
+</form>
+<hr>
+<pre>
+BEFORE IT IS TOO LATE... ASK YOURSELF THESE QUESTIONS
+
+One day, you may not be able to work.
+One day, a medical emergency may arrive without warning.
+One day, your child may need funds for higher education.
+One day, retirement will become a reality.
+
+The question is not:
+"Will these events happen?"
+
+The question is:
+"Will I be financially prepared when they happen?"
+
+(You can replace this section with your full content exactly as desired.)
+
+For FREE Financial Advice/Planning/Solutions, do contact.
+
+Uday Bir Singh
+Financial Planning Expert
+📳 9810597410 | 8178075398
+📧 ubsr7absl@gmail.com
+
+Protect • Plan • Invest • Prosper
+</pre>
+</div>
+<script>
+document.getElementById('f').onsubmit=function(e){
+e.preventDefault();
+let msg="Financial Planning Assessment\n\n";
+document.querySelectorAll('.q').forEach((q,i)=>{
+msg+=(document.getElementById('c'+(i+1)).checked?'☑ ':'☐ ')+q.innerText+"\nAnswer: "+document.getElementById('a'+(i+1)).value+"\n\n";
+});
+window.open("https://wa.me/919810597410?text="+encodeURIComponent(msg),"_blank");
+}
+</script>
+</body>
+</html>
